@@ -2,3 +2,4 @@
 dayOne/readInputExample.ts
 node_modules
 adventofcode.iml
+src/**/*.js
