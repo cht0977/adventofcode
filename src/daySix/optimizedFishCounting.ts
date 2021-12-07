@@ -3,7 +3,7 @@ import {readFileSync} from "fs";
 main()
 
 function calculateNumberOfFish(inputAsArray: Array<number>) {
-    const N = 256;
+    const N = 8100;
     const arr: number[] = new Array(9).fill(0);
     for (const number of inputAsArray) {
         arr[number]++;
