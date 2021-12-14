@@ -30,7 +30,7 @@ function boom(dumbi: number[][]) {
 
 function makeThemBlowUp(dumbi: number[][], flashes: number): number {
     const amountOfDumbiAboutToExplode = dumbi.map((l) => l.filter(d => d == 10))
-        .map(l => l.length).reduce((a,b) => a + b);
+        .map(l => l.length).reduce((a,c) => a + c);
     if(amountOfDumbiAboutToExplode === 0) return flashes;
 
     flashes += amountOfDumbiAboutToExplode;
@@ -43,6 +43,7 @@ function countAmountOfFlashes(dumbi: number[][], steps: number) {
     for (let i = 0; i < steps; i++) {
         dumbi = increaseDumbiEnergyLevelByOne(dumbi);
         flashes += makeThemBlowUp(dumbi, 0);
+        dumbi = resetEnergyLevelOfFlashedDumbi(dumbi);
     }
     return flashes;
 }
