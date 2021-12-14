@@ -44,7 +44,7 @@ function main() {
     const caves: Cave[] = []
     readFileSync('input.txt', 'utf-8').trim().split('\n')
         .forEach(l => {
-            const [start, goal] = l.split('-'); 
+            const [start, goal] = l.split('-');
             let cave = caves.find(c => c.start == start)
             let neighbor = caves.find(c => c.start == goal);
             if (!cave) {
