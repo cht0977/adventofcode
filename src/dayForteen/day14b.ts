@@ -32,7 +32,7 @@ function main() {
     sequence.split('').forEach(c => {
             countEachCharacter.set(c, (countEachCharacter.get(c) ?? 0) + 1);
     })
-    
+
     for (let i = 0; i < 40; i++) {
         let countOfNextSequences : Map<string, number> = new Map<string, number>()
         for (let [key, value] of countOfSequences.entries()) {
