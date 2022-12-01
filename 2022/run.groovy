@@ -1,19 +1,7 @@
-def input = new File("input") as String[]
+def input = new File("input").text
+def arraywitharrays = input.split("\n\n").collect( {it.split('\n') as List<Integer>} )
 
-def arraywitharrays = [][]
-def newSmallArray = []
-for (final def str in input) {
-    if (str.isBlank()) {
-        arraywitharrays.add(newSmallArray.clone())
-        newSmallArray.clear()
-        continue
-    }
-    newSmallArray.add(str)
-}
-arraywitharrays.add(newSmallArray.clone())
-
-
-def summedArray = arraywitharrays.collect { it.sum { a -> a as int } } as List<Integer>
+def summedArray = arraywitharrays.collect { it.sum { a -> a as int } }
 println taskA(summedArray)
 println taskB(summedArray)
 
