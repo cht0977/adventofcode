@@ -1,31 +1,28 @@
 package day3
 
-def getIndexForCharacter = {it ->
-    char c = it as char
-    return  c.lowerCase ? (c as int) - 96 : (c as int) - 38
-}
+import groovy.transform.Memoized
 
 String[] input = new File("input").collect()
 
-def resultArrays = input.collect { line ->
-    int[] letters = [0]*53
+def resultSets = input.collect { line ->
     def (firsthalf, secondhalf) = line.toList().collate((line.length()/2) as int)*.join()
-    firsthalf.each {it -> letters[getIndexForCharacter(it)] = 1}
-    secondhalf.each {it ->
-        int idx = getIndexForCharacter(it)
-        if(letters[idx] > 0) {
-            letters[idx] = 2
-        }
-    }
-    letters
+    def resultset = createSetWithAllPriorities(firsthalf).intersect(createSetWithAllPriorities(secondhalf))
+    resultset
 }
-def arrayWithSummedPriorities = resultArrays.collect { arr ->
-    int priority = 0
-    arr.eachWithIndex { int entry, int i -> priority += entry > 1 ? (entry - 1) * i : 0 }
-    priority
-}
-println arrayWithSummedPriorities.sum()
+
+println resultSets.sum {it[0]}
 
 
+Set createSetWithAllPriorities (line) {
+    Set<Integer> set = []
+    line.each {it -> set.add(getIndexForCharacter(it))}
+    set
+}
+
+@Memoized
+int getIndexForCharacter(stringCharacter)  {
+    char c = stringCharacter as char
+    return c.lowerCase ? (c as int) - 96 : (c as int) - 38
+}
 
 
