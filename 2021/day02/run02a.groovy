@@ -9,5 +9,3 @@ int[] up = strings.findAll {it.contains('up')}.collect {it.split(' ')[1] as int}
 
 int result = forwards.sum() * (down.sum()-up.sum())
 print result
-
-
